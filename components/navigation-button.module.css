@@ -1,23 +1,26 @@
 .navButton {
   position: relative;
-  color: var(--c-text-color);
   padding: 10px;
-  border-radius: 99px;
-  display: flex;
-  align-items: center;
-  transition: var(--fade);
-
-  &:hover {
-    color: var(--c-theme);
-    background-color: var(--c-theme-20);
-  }
 
   svg {
     font-size: 26px;
 
+    /*Yildiz olursa svgden sonra gelen herhangi birsey olur. Yani navigation button icersinde childrenden sonra gelen hersey*/
     & + * {
       margin-left: 20px;
       margin-right: 15px;
+    }
+  }
+
+  /*Css module de isimleri otomatik generate eder burada global diyerek bu isim global bunu generate etme dedik*/
+  /*twitter iconunun temalara gore rengi icin*/
+  /*css module yazmasaydik globaller olmayakti*/
+  &:global(.twitter) {
+    color: var(--c-theme);
+
+    /*burada twitter iconu lingtta degilse rengi beyaz olsun*/
+    :global(html:not(.light)) & {
+      color: white;
     }
   }
 }

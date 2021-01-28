@@ -1,67 +1,35 @@
 import React from 'react'
-
-import NavigationButton from './navigation-button'
-import TitleBold from './title-bold'
-import {
-  Twitter,
-  Home,
-  Notification,
-  Messages,
-  Explore,
-  Bookmark,
-  Lists,
-  Profile,
-  More
-} from './icons'
+import { useRouter} from "next/router";
+import cn from 'classnames'
 
 import styles from './navigation.module.css'
+import {MENU} from "../constants";
 
-function Navigaton({ selectedKey }) {
+import NavigationButton from './navigation-button'
+import TextTitle from './text-title'
+
+function Navigaton({ flat = false }) {
+  const router = useRouter()
+
   return (
     <nav className={styles.nav}>
-      <NavigationButton>
-        <Twitter />
-      </NavigationButton>
+      {MENU.map((menu) => {
+        const showTitle = !flat && menu.title.length > 0
+        const selected = router.pathname === menu.path
 
-      <NavigationButton selected={selectedKey === 'home'}>
-        <Home />
-        <TitleBold>Home</TitleBold>
-      </NavigationButton>
-
-      <NavigationButton selected={selectedKey === 'explore'}>
-        <Explore />
-        <TitleBold>Explore</TitleBold>
-      </NavigationButton>
-
-      <NavigationButton notify={17} selected={selectedKey === 'notification'}>
-        <Notification />
-        <TitleBold>Notification</TitleBold>
-      </NavigationButton>
-
-      <NavigationButton selected={selectedKey === 'messages'}>
-        <Messages />
-        <TitleBold>Messages</TitleBold>
-      </NavigationButton>
-
-      <NavigationButton selected={selectedKey === 'bookmark'}>
-        <Bookmark />
-        <TitleBold>Bookmark</TitleBold>
-      </NavigationButton>
-
-      <NavigationButton selected={selectedKey === 'list'}>
-        <Lists />
-        <TitleBold>Lists</TitleBold>
-      </NavigationButton>
-
-      <NavigationButton selected={selectedKey === 'profile'}>
-        <Profile />
-        <TitleBold>Profile</TitleBold>
-      </NavigationButton>
-
-      <NavigationButton selected={selectedKey === 'more'}>
-        <More />
-        <TitleBold>More</TitleBold>
-      </NavigationButton>
+        return (
+            <NavigationButton
+                key={menu.key}
+                notify={menu.notify}
+                selected={selected}
+                href={menu.path}
+                className={cn(styles.navbutton, menu.key)}
+            >
+              {selected ? menu.iconSelected : menu.icon}
+              {showTitle > 0 && <TextTitle>{menu.title}</TextTitle>}
+            </NavigationButton>
+        )
+      })}
     </nav>
   )
 }
