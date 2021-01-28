@@ -1,4 +1,21 @@
 .button {
     cursor: pointer;
     background: transparent;
+    color: var(--c-text-color);
+    border-radius: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--fade);
+    /*Text decoration ile, link ve base button diye ayirmistik, a geldiginde yazinin tip atanmasini kapattik(alttaki cizgi gitti)*/
+    text-decoration: none;
+
+    &:hover {
+         color: var(--c-theme);
+         background-color: var(--c-theme-10);
+     }
+}
+
+.fullWidth {
+    width: 100% !important;
 }
