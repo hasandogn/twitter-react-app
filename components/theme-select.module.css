@@ -1,0 +1,16 @@
+.container {
+    padding: 20px;
+}
+
+.label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 20px;
+/*containerde cagirilip radio input olanlar icin kullanilacak*/
+    input[type='radio'] {
+        font-size: 18x;
+        height: 1em;
+        width: 1em;
+        margin-right: 6px;
+    }
+}
