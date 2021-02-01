@@ -1,0 +1,57 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.3);
+
+  :global(html.light) &{
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.modal {
+  display: grid;
+  /*avatar body vermesek te altta belirtmeyerek yapmayabiliriz ama ayrica bir guzelligi yerini belirtiyoruz yani avatar hep baskta olacak*/
+  grid-template-areas: 'avatar body';
+  grid-template-columns: 50px 1fr;
+  grid-gap: 15px;
+  /*Hem max-width hemde normali sayfa resposive olsun diye verdik. 600pxden buyuk ekranlarda 600px kucuklerde yuzde yuz kapsayacak*/
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-bottom: 1px solid var(--c-border-color);
+  background-color: var(--c-primary);
+  border-radius: 20px;
+}
+
+.avatar {
+  grid-area: avatar;
+}
+
+.body {
+  grid-area: body;
+}
+
+.textarea {
+  resize: none;
+  outline: none;
+  color: var(--c-text-color);
+  background-color: transparent;
+  /*rem olarak vermemizin sebebi; rem ile stylesin altindaki global csste html altina fontsize 15 vermistik eger noyutu buyutursek bu da oto olarak artacak (15*1.5)*/
+  font-size: 1.5rem;
+  display: block;
+  width: 100%;
+}
+
+.footer {
+  justify-content: flex-end;
+}
+
+.close {
+  color: var(--c-gray);
+}
