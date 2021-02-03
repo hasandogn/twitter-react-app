@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 import '../styles/app.css'
 import StoreContext from '../store'
